@@ -1,0 +1,16 @@
+\begin{table}[htbp]
+	\centering
+	\caption{Prioritized Directions for Future Work}
+	\label{tab:future-work-directions}
+	\small
+	\begin{tabularx}{\linewidth}{@{}p{0.20\linewidth}XX@{}}
+		\toprule
+		\textbf{Direction} & \textbf{Proposed extension} & \textbf{Evaluation target} \\
+		\midrule
+		Training and parameters & Longer training, controlled parameter sweeps, and repeated runs & Convergence, final test accuracy, and variation across runs \\
+		Encoding and noise & Sparser or alternative encoding with controlled input and spike perturbations & Accuracy--activity trade-off, robustness, latency, and energy \\
+		Network architecture & Add and train one hidden layer using a clearly defined local learning strategy & Accuracy improvement relative to memory, resource, and latency cost \\
+		Measurement and runtime & Add cycle and weight observability, batch DMA transactions, and measure board power & Core latency, weight-level correctness, throughput, and energy per image \\
+		\bottomrule
+	\end{tabularx}
+\end{table}

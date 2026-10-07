@@ -1,0 +1,481 @@
+% Encoding: UTF-8
+
+@Article{Goehringer2013,
+  author    = {Diana Göhringer and Lukas Meder and Oliver Oey and Jürgen Becker},
+  title     = {Reliable and adaptive network-on-chip architectures for cyber physical systems},
+  journal   = {{ACM} Transactions on Embedded Computing Systems},
+  year      = {2013},
+  volume    = {12},
+  number    = {1s},
+  pages     = {1--21},
+  month     = {mar},
+  doi       = {10.1145/2435227.2435247},
+  file      = {:Articles/Reliable and Adaptive Network-on-Chip Architectures for Cyber.pdf:PDF},
+  owner     = {Julian Haase},
+  publisher = {Association for Computing Machinery ({ACM})},
+  timestamp = {2018-03-22},
+}
+
+@InProceedings{Dally2001,
+  author    = {W. J. Dally and B. Towles},
+  title     = {Route packets, not wires: on-chip interconnection networks},
+  booktitle = {Proceedings of the 38th Design Automation Conference (IEEE Cat. No.01CH37232)},
+  year      = {2001},
+  pages     = {684-689},
+  abstract  = {Using on-chip interconnection networks in place of ad-hoc global wiring structures the top level wires on a chip and facilitates modular design. With this approach, system modules (processors, memories, peripherals, etc...) communicate by sending packets to one another over the network. The structured network wiring gives well-controlled electrical parameters that eliminate timing iterations and enable the use of high-performance circuits to reduce latency and increase bandwidth. The area overhead required to implement an on-chip network is modest, we estimate 6.6%. This paper introduces the concept of on-chip networks, sketches a simple network, and discusses some challenges in the architecture and design of these networks.},
+  doi       = {10.1109/DAC.2001.156225},
+  file      = {:InProceedings/Route Packets, Not Wires On-Chip Interconnection Networks.pdf:PDF},
+  issn      = {0738-100X},
+  keywords  = {CMOS digital integrated circuits;circuit optimisation;crosstalk;integrated circuit interconnections;integrated circuit layout;modules;wiring;area overhead;electrical parameters;latency;modular design;on-chip interconnection networks;system modules;timing iterations;top level wires;Bandwidth;Circuits;Communication system control;Digital signal processing chips;Logic;Multiprocessor interconnection networks;Network-on-a-chip;Tiles;Wires;Wiring},
+  owner     = {Julian Haase},
+  timestamp = {2018-03-19},
+  url       = {http://ieeexplore.ieee.org/document/935594/},
+}
+
+@Book{Ogras2013,
+  title     = {Modeling, Analysis and Optimization of Network-on-Chip Communication Architectures},
+  publisher = {Springer Netherlands},
+  year      = {2013},
+  author    = {Umit Y. Ogras and Radu Marculescu},
+  doi       = {10.1007/978-94-007-3958-1},
+  file      = {:Books/Modeling, Analysis and Optimization of Network-on-Chip Communication Architectures.pdf:PDF},
+  owner     = {Julian Haase},
+  timestamp = {2018-03-26},
+}
+
+@PhdThesis{Logvinenko2014,
+  author      = {Logvinenko, Alexander},
+  title       = {Optimierung von Networks-on-Chip mit Hilfe der dynamischen Rekonfiguration},
+  year        = {2014},
+  type        = {phdthesis},
+  abstract    = {Modern processors are developed modularly. Therefore new developments need not be re-scheduled from the scratch; rather prefabricated components - so-called IP blocks (Intellectual Property blocks) - can be used.
+In order to connect the individual IPs, a reconfigurable architecture for network-on-chip has been developed: Reconfigurable Multi-Interconnection Network (RecMIN). It is able to adapt to the current traffic situation of the network.
+The developed architecture consists of single reconfigurable cells. In addition, the reconfiguration architecture has a higher degree of reuse for the hardware structures, such as regarding buffer, multiplexer. This means that the components of the previously active topology are actively used also after the reconfiguration to the new topology.
+In order to enable the simulation of the reconfiguration architecture, a simulation program RecSim was implemented.
+Finally, three algorithms are presented that observe the behavior of the RecMIN and perform a reconfiguration when needed. In this way the network topology is to remain optimally adapted to the traffic even if the load changes.
+The results of the simulation showed that the proposed reconfigurable network structure has the potential to improve the performance of some applications, especially those which switch between two or more traffic proles. For some applications RecMIN-architecture would significantly reduce paket delays (up to factor seven) (see chapter 6).
+For the hardware realization of the RecMIN-architecture on FPGA a Xilinx-FPGA with FIFO-buffer concept is recommended, as one of the best solutions for the RecMin realization. However, if circular buffer is chosen for RecMIN, which mostly makes sense for high packet traffic, the choice between Altera- and Xilinx-FPGAs would have to be made individually, for each specific case, based on the data from the images 7.9 - 7.11.
+The comparison between the three suggested reconfiguration algorithms provides the following conclusion:
+ŋ-algorithm can be used in computer simulations to compare the results achieved from other algorithms. However, integrating the ŋ-algorithm into a SoC is attended with hardware complexity.
+Minimal-Queues-Algorithm (MQA) is faster than the ŋ-algorithm and requires less area on the SoC. It can be integrated into SoC with less hardware complexity than ŋ-algorithm. The MQA is a best solution in case that foreknowledge about the nerwork traffic are not available.
+The Pattern-Identication-Algorithm (PIA) is faster than the ŋ-algorithm and the Minimal-Queue-Algorithm. In case of properly implementation of the pattern for the PIA, the PIA is the most efficient of three algorithms proposed in this work.},
+  date        = {2014-09-08},
+  file        = {:Dissertations/Diss_Logvinenko.pdf:PDF},
+  institution = {Bergische Universität Wuppertal},
+  language    = {Deutsch},
+  location    = {Wuppertal},
+  owner       = {Julian Haase},
+  timestamp   = {2018-03-19},
+  url         = {http://elpub.bib.uni-wuppertal.de/servlets/DocumentServlet?id=4910},
+  urldate     = {2018-03-19},
+}
+
+@TechReport{Rantala2006,
+  author      = {Rantala, Ville and Lehtonen, Teijo and Plosila, Juha},
+  title       = {Network on Chip Routing Algorithms},
+  institution = {Turku Centre for Computer Science},
+  year        = {2006},
+  number      = {779},
+  abstract    = {Network on Chip (NoC) is a new paradigm to make the interconnections
+inside a System on Chip (SoC) system. In traditional solutions
+interconnections are realized using a bus structure. While integration
+increases the bus structure does not meet the needs of the new
+technology. Bus starts to be narrow and in the worst case it begins to
+block traffic. In NoC technology the bus structure is replaced
+with a network which is a lot similar to the Internet. Segments
+communicate with each other by sending packetized data over this
+network.
+
+Just like a computer network, a NoC network consists of devices that
+use the network, routers that direct the traffic between devices and
+wires that connect devices to routers and routers to other routers.
+In the network design of the NoC the most essential things are a
+network topology and a routing algorithm. Routers route the packets
+based on the algorithm that they use. There are many kind of different
+algorithms for different systems to choose. Every system has its own
+requirements for the routing algorithm.
+
+This report looks through the basics of networking on Network on Chip
+systems and presents proposed routing algorithms to be used on NoCs.
+In the end of the report the proposed router architectures are also
+presented.},
+  file        = {:TechReport/Network on Chip Routing Algorithms.pdf:PDF},
+  isbn        = {952-12-1764-2},
+  keywords    = {Network on Chip, routing algorithm, router architecture},
+  owner       = {Julian Haase},
+  publisher   = {Turku Centre for Computer Science},
+  series      = {TUCS Technical Reports},
+  timestamp   = {2018-04-18},
+  url         = {http://tucs.fi/publications/view/?pub_id=tRaLePl06a},
+}
+
+@Manual{DigilentPYNQZ1Manual,
+  author       = {{Digilent Inc.}},
+  title        = {{PYNQ-Z1 Board Reference Manual}},
+  organization = {Digilent Inc.},
+  url          = {https://digilent.com/reference/programmable-logic/pynq-z1/reference-manual},
+  urldate      = {2026-09-22},
+}
+
+@Online{DigilentPYNQZ1Product,
+  author  = {{Digilent Inc.}},
+  title   = {{PYNQ-Z1: Python Productivity for Zynq-7000 ARM/FPGA SoC}},
+  url     = {https://digilent.com/shop/pynq-z1-python-productivity-for-zynq-7000-arm-fpga-soc/},
+  urldate = {2026-09-22},
+}
+
+@Online{PYNQOverlays,
+  author  = {{PYNQ Project}},
+  title   = {{PYNQ Overlays}},
+  url     = {https://pynq.readthedocs.io/en/v2.5/pynq_overlays.html},
+  urldate = {2026-09-22},
+}
+
+@Online{PYNQOverlayLoading,
+  author  = {{PYNQ Project}},
+  title   = {{Loading an Overlay}},
+  url     = {https://pynq.readthedocs.io/en/latest/pynq_overlays/loading_an_overlay.html},
+  urldate = {2026-09-22},
+}
+
+@Online{PYNQOverlayDesign,
+  author  = {{PYNQ Project}},
+  title   = {{Overlay Design Methodology}},
+  url     = {https://pynq.readthedocs.io/en/latest/overlay_design_methodology/overlay_design.html},
+  urldate = {2026-09-22},
+}
+
+@Online{PYNQBuffer,
+  author  = {{PYNQ Project}},
+  title   = {{pynq.buffer Module}},
+  url     = {https://pynq.readthedocs.io/en/latest/pynq_package/pynq.buffer.html},
+  urldate = {2026-09-27},
+}
+
+@Online{PYNQDMA,
+  author  = {{PYNQ Project}},
+  title   = {{pynq.lib.dma Module}},
+  url     = {https://pynq.readthedocs.io/en/v3.1/pynq_package/pynq.lib/pynq.lib.dma.html},
+  urldate = {2026-09-27},
+}
+
+@Article{LeCun1998GradientBasedLearning,
+  author  = {LeCun, Yann and Bottou, L{\'e}on and Bengio, Yoshua and Haffner, Patrick},
+  title   = {Gradient-Based Learning Applied to Document Recognition},
+  journal = {Proceedings of the IEEE},
+  year    = {1998},
+  volume  = {86},
+  number  = {11},
+  pages   = {2278--2324},
+  doi     = {10.1109/5.726791},
+}
+
+@InProceedings{Shi2022TEDOP,
+  author    = {Shi, Cong and Chen, Sihao and Wang, Haibing and Zhong, Zhengqing and Li, Ping and He, Junxian and Wang, Tengxiao and Yu, Jianyi and Tian, Min},
+  title     = {{TEDOP}: A Tiny Event-Driven Neural Network Hardware Core Enabling On-Chip Spike-Driven Synaptic Plasticity},
+  booktitle = {2022 IEEE International Conference on Integrated Circuits, Technologies and Applications (ICTA)},
+  year      = {2022},
+  pages     = {62--63},
+  doi       = {10.1109/ICTA56932.2022.9963064},
+}
+
+@Article{Rathi2023DIETSNN,
+  author  = {Rathi, Nitin and Roy, Kaushik},
+  title   = {{DIET-SNN}: A Low-Latency Spiking Neural Network With Direct Input Encoding and Leakage and Threshold Optimization},
+  journal = {IEEE Transactions on Neural Networks and Learning Systems},
+  year    = {2023},
+  volume  = {34},
+  number  = {6},
+  pages   = {3174--3182},
+  doi     = {10.1109/TNNLS.2021.3111897},
+}
+
+@InProceedings{Park2021NoiseRobust,
+  author    = {Park, Seongsik and Lee, Dongjin and Yoon, Sungroh},
+  title     = {Noise-Robust Deep Spiking Neural Networks with Temporal Information},
+  booktitle = {2021 58th ACM/IEEE Design Automation Conference (DAC)},
+  year      = {2021},
+  pages     = {373--378},
+  doi       = {10.1109/DAC18074.2021.9586195},
+}
+
+@Article{Brader2007,
+  author  = {Brader, Joseph M. and Senn, Walter and Fusi, Stefano},
+  title   = {Learning Real-World Stimuli in a Neural Network with Spike-Driven Synaptic Dynamics},
+  journal = {Neural Computation},
+  year    = {2007},
+  volume  = {19},
+  number  = {11},
+  pages   = {2881--2912},
+  doi     = {10.1162/neco.2007.19.11.2881},
+}
+
+@Article{Carpegna2025,
+  author  = {Carpegna, Alessio and Savino, Alessandro and Di Carlo, Stefano},
+  title   = {{Spiker+}: A Framework for the Generation of Efficient Spiking Neural Networks FPGA Accelerators for Inference at the Edge},
+  journal = {IEEE Transactions on Emerging Topics in Computing},
+  year    = {2025},
+  volume  = {13},
+  number  = {3},
+  pages   = {784--798},
+  doi     = {10.1109/TETC.2024.3511676},
+}
+
+@Article{Asgari2020SDSP,
+  author  = {Asgari, Hajar and Mazloom-Nezhad Maybodi, Babak and Sandamirskaya, Yulia},
+  title   = {Digital Multiplier-Less Implementation of High-Precision {SDSP} and Synaptic Strength-Based {STDP}},
+  journal = {International Journal of Circuit Theory and Applications},
+  year    = {2020},
+  volume  = {48},
+  number  = {5},
+  pages   = {724--738},
+  doi     = {10.1002/cta.2753},
+}
+
+@Article{BiPoo1998,
+  author  = {Bi, Guo-qiang and Poo, Mu-ming},
+  title   = {Synaptic Modifications in Cultured Hippocampal Neurons: Dependence on Spike Timing, Synaptic Strength, and Postsynaptic Cell Type},
+  journal = {The Journal of Neuroscience},
+  year    = {1998},
+  volume  = {18},
+  number  = {24},
+  pages   = {10464--10472},
+  doi     = {10.1523/JNEUROSCI.18-24-10464.1998},
+}
+
+@InProceedings{Carpegna2022,
+  author    = {Carpegna, Alessio and Savino, Alessandro and Di Carlo, Stefano},
+  title     = {{Spiker}: An FPGA-Optimized Hardware Accelerator for Spiking Neural Networks},
+  booktitle = {2022 IEEE Computer Society Annual Symposium on VLSI (ISVLSI)},
+  year      = {2022},
+  pages     = {14--19},
+  doi       = {10.1109/ISVLSI54635.2022.00016},
+}
+
+@Article{Davis2018,
+  author  = {Davies, Mike and Srinivasa, Narayan and Lin, Tsung-Han and Chinya, Gautham and Cao, Yongqiang and Choday, Sri Harsha and Dimou, Georgios and Joshi, Prasad and Imam, Nabil and Jain, Shweta and Liao, Yuyun and Lin, Chit-Kwan and Lines, Andrew and Liu, Ruokun and Mathaikutty, Deepak and McCoy, Steven and Paul, Arnab and Tse, Jonathan and Venkataramanan, Guruguhanathan and Weng, Yi-Hsin and Wild, Andreas and Yang, Yoonseok and Wang, Hong},
+  title   = {{Loihi}: A Neuromorphic Manycore Processor with On-Chip Learning},
+  journal = {IEEE Micro},
+  year    = {2018},
+  volume  = {38},
+  number  = {1},
+  pages   = {82--99},
+  doi     = {10.1109/MM.2018.112130359},
+}
+
+@InProceedings{Fang2022RAINE,
+  author    = {Fang, Chaoming and Tian, Fengshi and Wang, Chuanqing and Yang, Jie and Sawan, Mohamad},
+  title     = {A 217.8 {MSOPs/W} FPGA-Based Online Learning {SNN} Processor Using Unified Event-Driven Structure and Topology-Aware Data Reuse Strategies},
+  booktitle = {2022 IEEE Asian Solid-State Circuits Conference (A-SSCC)},
+  year      = {2022},
+  pages     = {1--3},
+  doi       = {10.1109/A-SSCC56115.2022.9980727},
+}
+
+@Article{Frenkel2019ODIN,
+  author  = {Frenkel, Charlotte and Lefebvre, Martin and Legat, Jean-Didier and Bol, David},
+  title   = {A 0.086-mm\textsuperscript{2} 12.7-pJ/SOP 64k-Synapse 256-Neuron Online-Learning Digital Spiking Neuromorphic Processor in 28-nm {CMOS}},
+  journal = {IEEE Transactions on Biomedical Circuits and Systems},
+  year    = {2019},
+  volume  = {13},
+  number  = {1},
+  pages   = {145--158},
+  doi     = {10.1109/TBCAS.2018.2880425},
+}
+
+@Article{Frenkel2019MorphIC,
+  author  = {Frenkel, Charlotte and Legat, Jean-Didier and Bol, David},
+  title   = {{MorphIC}: A 65-nm 738k-Synapse/mm\textsuperscript{2} Quad-Core Binary-Weight Digital Neuromorphic Processor with Stochastic Spike-Driven Online Learning},
+  journal = {IEEE Transactions on Biomedical Circuits and Systems},
+  year    = {2019},
+  volume  = {13},
+  number  = {5},
+  pages   = {999--1010},
+  doi     = {10.1109/TBCAS.2019.2928793},
+}
+
+@Book{Gerstner2014,
+  author    = {Gerstner, Wulfram and Kistler, Werner M. and Naud, Richard and Paninski, Liam},
+  title     = {Neuronal Dynamics: From Single Neurons to Networks and Models of Cognition},
+  publisher = {Cambridge University Press},
+  year      = {2014},
+  location  = {Cambridge, United Kingdom},
+  isbn      = {978-1-107-06083-8},
+  doi       = {10.1017/CBO9781107447615},
+}
+
+@Article{HodgkinHuxley1952,
+  author  = {Hodgkin, Alan L. and Huxley, Andrew F.},
+  title   = {A Quantitative Description of Membrane Current and Its Application to Conduction and Excitation in Nerve},
+  journal = {The Journal of Physiology},
+  year    = {1952},
+  volume  = {117},
+  number  = {4},
+  pages   = {500--544},
+  doi     = {10.1113/jphysiol.1952.sp004764},
+}
+
+@Article{Izhikevich2003,
+  author  = {Izhikevich, Eugene M.},
+  title   = {Simple Model of Spiking Neurons},
+  journal = {IEEE Transactions on Neural Networks},
+  year    = {2003},
+  volume  = {14},
+  number  = {6},
+  pages   = {1569--1572},
+  doi     = {10.1109/TNN.2003.820440},
+}
+
+@Article{Karamimanesh2025,
+  author  = {Karamimanesh, Mehrzad and Abiri, Ebrahim and Shahsavari, Mahyar and Hassanli, Kourosh and van Schaik, Andr{\'e} and Eshraghian, Jason},
+  title   = {Spiking Neural Networks on FPGA: A Survey of Methodologies and Recent Advancements},
+  journal = {Neural Networks},
+  year    = {2025},
+  volume  = {186},
+  pages   = {107256},
+  doi     = {10.1016/j.neunet.2025.107256},
+}
+
+@Article{Li2021SNN,
+  author  = {Li, Sixu and Zhang, Zhaomin and Mao, Ruixin and Xiao, Jianbiao and Chang, Liang and Zhou, Jun},
+  title   = {A Fast and Energy-Efficient {SNN} Processor with Adaptive Clock/Event-Driven Computation Scheme and Online Learning},
+  journal = {IEEE Transactions on Circuits and Systems I: Regular Papers},
+  year    = {2021},
+  volume  = {68},
+  number  = {4},
+  pages   = {1543--1552},
+  doi     = {10.1109/TCSI.2021.3052885},
+}
+
+@Article{Maass1997,
+  author  = {Maass, Wolfgang},
+  title   = {Networks of Spiking Neurons: The Third Generation of Neural Network Models},
+  journal = {Neural Networks},
+  year    = {1997},
+  volume  = {10},
+  number  = {9},
+  pages   = {1659--1671},
+  doi     = {10.1016/S0893-6080(97)00011-7},
+}
+
+@Article{Neftci2019,
+  author  = {Neftci, Emre O. and Mostafa, Hesham and Zenke, Friedemann},
+  title   = {Surrogate Gradient Learning in Spiking Neural Networks: Bringing the Power of Gradient-Based Optimization to Spiking Neural Networks},
+  journal = {IEEE Signal Processing Magazine},
+  year    = {2019},
+  volume  = {36},
+  number  = {6},
+  pages   = {51--63},
+  doi     = {10.1109/MSP.2019.2931595},
+}
+
+@Article{Rueckauer2017,
+  author  = {Rueckauer, Bodo and Lungu, Iulia-Alexandra and Hu, Yuhuang and Pfeiffer, Michael and Liu, Shih-Chii},
+  title   = {Conversion of Continuous-Valued Deep Networks to Efficient Event-Driven Networks for Image Classification},
+  journal = {Frontiers in Neuroscience},
+  year    = {2017},
+  volume  = {11},
+  pages   = {682},
+  doi     = {10.3389/fnins.2017.00682},
+}
+
+@Article{Thorpe2001,
+  author  = {Thorpe, Simon J. and Delorme, Arnaud and Van Rullen, Rufin},
+  title   = {Spike-Based Strategies for Rapid Processing},
+  journal = {Neural Networks},
+  year    = {2001},
+  volume  = {14},
+  number  = {6--7},
+  pages   = {715--725},
+  doi     = {10.1016/S0893-6080(01)00083-1},
+}
+
+@Article{VipinFahmy2018,
+  author  = {Vipin, Kizheppatt and Fahmy, Suhaib A.},
+  title   = {FPGA Dynamic and Partial Reconfiguration: A Survey of Architectures, Methods, and Applications},
+  journal = {ACM Computing Surveys},
+  year    = {2018},
+  volume  = {51},
+  number  = {4},
+  pages   = {72:1--72:39},
+  doi     = {10.1145/3193827},
+}
+
+@Article{Zenke2018,
+  author  = {Zenke, Friedemann and Ganguli, Surya},
+  title   = {{SuperSpike}: Supervised Learning in Multilayer Spiking Neural Networks},
+  journal = {Neural Computation},
+  year    = {2018},
+  volume  = {30},
+  number  = {6},
+  pages   = {1514--1541},
+  doi     = {10.1162/neco_a_01086},
+}
+
+@Manual{UG473,
+  author       = {{Xilinx, Inc.}},
+  title        = {{7 Series FPGAs Memory Resources User Guide}},
+  organization = {Xilinx, Inc.},
+  number       = {UG473},
+  version      = {1.14},
+  year         = {2019},
+  url          = {https://docs.amd.com/v/u/en-US/ug473_7Series_Memory_Resources},
+  urldate      = {2026-09-28},
+}
+
+@Manual{UG474,
+  author       = {{Advanced Micro Devices, Inc.}},
+  title        = {{7 Series FPGAs Configurable Logic Block User Guide}},
+  organization = {Advanced Micro Devices, Inc.},
+  number       = {UG474},
+  version      = {1.9},
+  year         = {2025},
+  url          = {https://docs.amd.com/r/en-US/ug474_7Series_CLB},
+  urldate      = {2026-09-28},
+}
+
+@Manual{UG479,
+  author       = {{Xilinx, Inc.}},
+  title        = {{7 Series DSP48E1 Slice User Guide}},
+  organization = {Xilinx, Inc.},
+  number       = {UG479},
+  version      = {1.10},
+  year         = {2018},
+  url          = {https://docs.amd.com/v/u/en-US/ug479_7Series_DSP48E1},
+  urldate      = {2026-09-28},
+}
+
+@Manual{UG901,
+  author       = {{Advanced Micro Devices, Inc.}},
+  title        = {{Vivado Design Suite User Guide: Synthesis}},
+  organization = {Advanced Micro Devices, Inc.},
+  number       = {UG901},
+  version      = {2026.1},
+  year         = {2026},
+  url          = {https://docs.amd.com/r/en-US/ug901-vivado-synthesis},
+  urldate      = {2026-09-28},
+}
+
+@Manual{UG904,
+  author       = {{Advanced Micro Devices, Inc.}},
+  title        = {{Vivado Design Suite User Guide: Implementation}},
+  organization = {Advanced Micro Devices, Inc.},
+  number       = {UG904},
+  version      = {2026.1},
+  year         = {2026},
+  url          = {https://docs.amd.com/r/en-US/ug904-vivado-implementation},
+  urldate      = {2026-09-28},
+}
+
+@Manual{UG909,
+  author       = {{Advanced Micro Devices, Inc.}},
+  title        = {{Vivado Design Suite User Guide: Dynamic Function eXchange}},
+  organization = {Advanced Micro Devices, Inc.},
+  number       = {UG909},
+  version      = {2026.1},
+  year         = {2026},
+  url          = {https://docs.amd.com/r/en-US/ug909-vivado-partial-reconfiguration},
+  urldate      = {2026-09-28},
+}
+
+@Comment{jabref-meta: databaseType:bibtex;}

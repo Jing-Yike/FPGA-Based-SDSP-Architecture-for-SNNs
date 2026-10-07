@@ -1,0 +1,73 @@
+% !TEX root = thesis.tex
+\chapter{Related Work}
+\label{sec:related_work}
+
+This chapter reviews representative digital hardware architectures that support on-chip or online learning in \gls{snn}s. The selected works cover both custom \gls{asic} processors and \gls{fpga}-based implementations, with particular attention to local synaptic plasticity rules, event-driven processing, writable weight storage, and the relationship between the learning algorithm and the neuron model. The chapter first discusses \gls{sdsp}-based \gls{asic} processors, then examines \gls{fpga} implementations of \gls{sdsp} and \gls{stdp}, and finally compares their architectural choices and experimental results. Based on this comparison, the research gap addressed by this thesis is identified.
+
+\section{ASIC-Based Online-Learning Spiking Neural Network Processors}
+\label{subsec: asic online learning processors}
+
+Custom neuromorphic processors allow neuron, synapse, memory, and learning circuits to be co-designed as one event-driven system. Among the selected works, ODIN and MorphIC are particularly relevant because both implement variants of \gls{sdsp} and store plastic synaptic weights on chip.
+
+\subsection{ODIN}
+
+ODIN is a fully digital neuromorphic processor fabricated in 28-nm \gls{cmos} technology \cite{Frenkel2019ODIN}. Rather than assigning dedicated update logic to every synapse, it stores neuron and synapse states in on-chip memories and processes them sequentially using shared update circuitry. This time-multiplexed organization integrates event-driven execution and online learning within the same programmable neuron architecture.
+
+The processor supports online learning through a hardware-oriented implementation of \gls{sdsp}. Each synaptic update is determined from locally available information, including the presynaptic event, the postsynaptic membrane potential, and an activity-dependent calcium state. The synapses use a compact $(3+1)$-bit representation, and the neurons can be configured either as \gls{lif} neurons or as a phenomenological model supporting multiple firing behaviours. With a 256--10 classifier and a single presentation of downsampled MNIST training samples, ODIN reports online-learning accuracies of 85.0\% using rate coding and 84.5\% using rank-order coding. The result shows that \gls{sdsp} can be embedded in a complete event-driven processor. Its fixed silicon organization, however, makes it less suitable as a directly modifiable platform for investigating alternative \gls{fpga} architectures.
+
+\subsection{MorphIC}
+
+MorphIC extends the same general design direction towards multi-core networks and binary synaptic weights \cite{Frenkel2019MorphIC}. Its four neuromorphic cores are connected through a hierarchical event-routing structure that supports communication within the chip and between multiple chips.
+
+Because a deterministic increment or decrement cannot be applied directly to a binary weight, MorphIC introduces stochastic \gls{sdsp} (S-\gls{sdsp}). The usual potentiation and depression conditions are evaluated from the postsynaptic state, but the binary weight transition is additionally controlled by a probability. MorphIC demonstrates this rule with an on-chip eight-pattern learning task. The reported 97.8\% MNIST accuracy is instead obtained with offline-trained binary weights and must therefore not be interpreted as an online-learning result. MorphIC consequently shows that the learning rule, weight representation, and evaluation task must be considered together.
+
+\section{FPGA-Based Plasticity and Online Learning}
+\label{subsec: fpga online learning processors}
+
+An \gls{fpga} offers a shorter development cycle than a custom \gls{asic} and allows the neuron model, learning rule, and memory organization to be modified after deployment. The following works illustrate different \gls{fpga} design points, ranging from an individual high-resolution plastic synapse to complete online-learning processors.
+
+\subsection{High-Resolution Multiplier-Less Digital SDSP Synapse}
+
+Asgari et al. propose multiplier-less digital architectures for \gls{sdsp} and synaptic-strength-based \gls{stdp} \cite{Asgari2020SDSP}. Their \gls{sdsp} architecture uses 32-bit fixed-point registers; with one bit assigned to the integer part and 31 bits to the fractional part, the nominal numerical resolution of the synaptic state can reach $2^{-31}$. The term \emph{high precision}, as used in the original paper, therefore refers to the fine numerical resolution of the digital representation rather than to an exact hardware realization of the original continuous model.
+
+The arithmetic is simplified by realizing the calcium dynamics with shift-and-add operations and by replacing the thresholded sigmoidal postsynaptic-potential function with a linear approximation. The resulting architecture consequently trades some model fidelity for a simpler digital realization while retaining a fine-grained representation of synaptic changes. The lookup-table and piecewise-linear approximations presented in the same paper primarily concern its synaptic-strength-based \gls{stdp} architectures and should not be interpreted as components of the proposed \gls{sdsp} circuit.
+
+The \gls{sdsp} design is evaluated on a Xilinx Spartan-6 \gls{fpga} using a minimal network containing two neurons and one plastic synapse. The experiments reproduce both long-term potentiation and long-term depression and confirm the expected synaptic behaviour. This work is valuable as a detailed implementation study of a numerically high-resolution plasticity circuit. However, it does not evaluate a complete classification network, memory organization for a large number of synapses, or the coordination of learning with a full \gls{snn} accelerator. It therefore serves primarily as a reference for the plasticity circuit rather than as a complete online-learning system.
+
+\subsection{Adaptive Event-Driven SNN Processor}
+
+Li et al. present an \gls{fpga}-based \gls{snn} processor that supports both inference and online \gls{stdp} learning \cite{Li2021SNN}. The architecture combines an adaptive clock- and event-driven computation scheme with processing-element sharing and compressed spike routing. Inactive operations can be skipped, while a common datapath is reused between neuron-state computation and synaptic learning. The design is implemented on a Virtex-7 \gls{fpga} at 100\,MHz.
+
+For MNIST inference using weights converted from an offline-trained network, the processor reports 92.93\% accuracy. In the online-learning experiment, randomly initialized weights reach 85.28\% accuracy. When noise reduces this accuracy to 63.69\%, an additional learning phase recovers it to 82.52\%. These results demonstrate adaptation after deployment and illustrate how online \gls{stdp} can restore classification performance after a change in the input conditions.
+
+\subsection{TEDOP}
+
+TEDOP is a compact event-driven \gls{fpga} core designed specifically for supervised on-chip learning \cite{Shi2022TEDOP}. It combines a simplified Temporal-Integrate neuron model with a stochastic supervised \gls{sdsp} variant referred to as S4DSP. Neuron states and weights are stored in on-chip memories, while a single pipelined core sequentially processes incoming address events. The learning engine implements the stochastic update decision using comparisons, additions, and a linear-feedback shift register.
+
+At 250\,MHz, the Zynq-7010 implementation reports 90.4\% accuracy on MNIST and learning and inference rates above 11,000 frames per second. TEDOP demonstrates that a highly specialized event-driven datapath can provide fast on-chip learning. Its result is enabled partly by the simplified neuron model and a task-oriented architecture, which limits direct reuse in a framework supporting a wider range of \gls{snn} configurations.
+
+\subsection{RAINE}
+
+RAINE targets a broader range of network types and combines event-driven execution with trace-based \gls{stdp} learning \cite{Fang2022RAINE}. Its pipelined event-driven architecture contains 16 unified learning engines that share arithmetic units between \gls{lif} neuron updates, trace updates, potentiation, and depression. A topology-aware data-reuse strategy selects suitable reuse patterns for feedforward, recurrent, and convolutional networks in order to reduce repeated memory accesses.
+
+Implemented on an Alveo U250 \gls{fpga} at 75\,MHz, RAINE reports 96.2\% accuracy for ECG classification, approximately 91.9\% for EEG classification, and 98.26\% for MNIST using a convolutional \gls{snn} with rewarded trace-based \gls{stdp}. RAINE demonstrates that sharing a common datapath across inference and learning operations can support several network classes and application domains.
+
+\section{Comparison of Existing Approaches}
+\label{subsec: comparison of existing approaches}
+
+Table \ref{tab:related-work-comparison} summarizes the six reviewed architectures at the algorithmic and application levels. The reported results should be interpreted with care because the implementations use different network topologies, numerical representations, datasets, and evaluation procedures. In particular, offline and online accuracy values are not directly equivalent.
+
+A more detailed quantitative comparison is provided in Table~\ref{tab:sdsp-evaluation-comparison} of Section~\ref{subsec:comparison-with-related-work}. That evaluation focuses specifically on the \gls{sdsp}-based implementations, adds the results of the system developed in this thesis, and compares their implementation characteristics, power or energy figures, learning results, and measurement boundaries.
+
+\input{tables/related_work_comparison}
+
+ODIN demonstrates multi-bit \gls{sdsp} with configurable neuron dynamics, whereas MorphIC combines binary weights with stochastic updates in a multi-core organization. Together, they establish that local state-based learning can be integrated with on-chip synaptic memory, but their fabricated architectures cannot be modified as readily as an \gls{fpga} prototype.
+
+The \gls{fpga} works explore a wider range of architectural choices. The implementation by Asgari et al. prioritizes numerical resolution at the level of an individual plastic synapse, but does not demonstrate a complete learning application. Li et al. integrate online \gls{stdp} into a larger processor and demonstrate recovery from input noise. TEDOP jointly simplifies the neuron and learning models for a specialized single-layer classifier, whereas RAINE emphasizes support for multiple network classes and the reuse of computation and data. These differences show that online-learning hardware cannot be compared using accuracy alone; the learning rule, weight precision, topology, supported workload, and evaluation protocol must be considered together.
+
+\section{Research Gap and Positioning of This Work}
+\label{subsec: research gap and positioning of this work}
+
+The reviewed literature confirms that event-driven local learning is feasible in both \gls{asic} and \gls{fpga} hardware. Nevertheless, a gap remains between isolated plasticity circuits or task-specific online-learning processors and reusable \gls{snn}-generation frameworks. Existing \gls{sdsp}-based \gls{asic}s are fixed after fabrication. The \gls{fpga} implementation by Asgari et al. focuses on a high-resolution synapse rather than system-level integration, while TEDOP couples its learning rule to a specialized neuron and processing architecture. The more general \gls{fpga} processors use \gls{stdp}-based learning and do not provide an \gls{sdsp} extension for the Spiker+ generation flow.
+
+This thesis addresses this gap by extending the open-source Spiker+ framework with hardware support for \gls{sdsp}-based online learning. The work focuses on integrating the learning decision with the existing neuron datapath, providing writable and bounded synaptic weights, and coordinating inference and weight-update operations within the generated VHDL architecture. The resulting system is intended to preserve the modularity of Spiker+ while adding local online adaptation. Its functional behaviour and measured implementation results are evaluated in the following chapters against the design considerations identified in this review.

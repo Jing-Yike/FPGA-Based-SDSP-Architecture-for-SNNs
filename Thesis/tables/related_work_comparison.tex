@@ -1,0 +1,85 @@
+% Comparison table for Chapter 3 (Related Work).
+% Required packages are already loaded in Thesis/header.tex:
+% array, tabularx, and booktabs.
+
+\begin{table}[p]
+	\centering
+	\caption{Comparison of related online-learning SNN hardware architectures}
+	\label{tab:related-work-comparison}
+	\begingroup
+	\scriptsize
+	\sloppy
+	\setlength{\tabcolsep}{2pt}
+	\renewcommand{\arraystretch}{1.08}
+	\begin{tabularx}{\textwidth}{@{}
+		>{\raggedright\arraybackslash}p{1.55cm}
+		*{6}{>{\raggedright\arraybackslash}X}@{}}
+		\toprule
+		\textbf{Metric} &
+		\shortstack[l]{\textbf{ODIN}\\IEEE TBioCAS\\2019 \cite{Frenkel2019ODIN}} &
+		\shortstack[l]{\textbf{MorphIC}\\IEEE TBioCAS\\2019 \cite{Frenkel2019MorphIC}} &
+		\shortstack[l]{\textbf{Asgari et al.}\\IJCTA\\2020 \cite{Asgari2020SDSP}} &
+		\shortstack[l]{\textbf{Li et al.}\\IEEE TCAS-I\\2021 \cite{Li2021SNN}} &
+		\shortstack[l]{\textbf{TEDOP}\\IEEE ICTA\\2022 \cite{Shi2022TEDOP}} &
+		\shortstack[l]{\textbf{RAINE}\\IEEE A-SSCC\\2022 \cite{Fang2022RAINE}} \\
+		\midrule
+
+		\textbf{Platform} &
+		28-nm ASIC &
+		65-nm ASIC &
+		Spartan-6 XC6SLX45 FPGA &
+		VC707, Virtex-7 FPGA &
+		Zynq-7010 FPGA &
+		Alveo U250 FPGA \\
+
+		\textbf{Topology} &
+		256--10 &
+		Four-core hierarchy; eight-class online benchmark &
+		1--1 test network &
+		784--100 &
+		784--10 &
+		Convolutional SNN for MNIST \\
+
+		\textbf{Neuron and representation} &
+		LIF or configurable Izhikevich-like neuron; 3-bit weights &
+		LIF neurons; binary weights &
+		LIF with calcium estimator; 32-bit fixed-point weights &
+		LIF neurons; precision N/R &
+		16-bit Temporal-Integrate state; 8-bit weights &
+		LIF neurons; 8-bit fixed-point weights \\
+
+		\textbf{Learning rule} &
+		Teacher-supervised SDSP &
+		Stochastic SDSP &
+		High-resolution multiplier-less SDSP &
+		Trace-based STDP &
+		Supervised stochastic S4DSP &
+		Rewarded trace-based STDP \\
+
+		\textbf{Frequency} &
+		75\,MHz &
+		55\,MHz &
+		131\,MHz &
+		100\,MHz &
+		250\,MHz &
+		75\,MHz \\
+
+		\textbf{Dataset} &
+		16 $\times$ 16 MNIST &
+		Eight-pattern benchmark; MNIST &
+		Synthetic spike trains &
+		MNIST &
+		MNIST; additional static and event-based datasets &
+		ECG; EEG; MNIST \\
+
+		\textbf{Reported result} &
+		85.0\% rate; 84.5\% rank order &
+		800/800 on eight-pattern benchmark; 97.8\% MNIST offline &
+		LTP and LTD verified; no classification task &
+		85.28\% online; 82.52\% after noisy relearning; 92.93\% offline &
+		90.4\% on MNIST &
+		ECG: 96.2\%; EEG: ${\sim}$91.9\%; MNIST: 98.26\% \\
+		\bottomrule
+	\end{tabularx}
+	\endgroup
+\end{table}

@@ -1,0 +1,27 @@
+image: aergus/latex
+stages: [build]
+
+build_docs:
+  stage: build
+  tags: [ads1]
+  only:
+    changes: ["Thesis/**/*", "Thesis/**", "TaskDescription/**/*", "TaskDescription/**"]
+  artifacts:
+    paths: [Thesis.pdf, TaskDescription.pdf]
+  script:
+    # TaskDescription (compile only if there is no signed version); Print the signed version directly to include signatures
+    - if [ -f "Thesis/TaskDescriptionSigned.pdf" ]; then
+        gs -sDEVICE=pdfwrite -dNOPAUSE -dBATCH -dSAFER -sOutputFile=TaskDescription.pdf Thesis/TaskDescriptionSigned.pdf;
+      else
+        cd TaskDescription;
+        sed -i 's/\\documentclass\[\(.*\)\]/\\documentclass\[\1,final\]/' "TaskDescription.tex";
+        latexmk -e '$pdflatex=q/pdflatex %O -shell-escape %S/' -pdf TaskDescription.tex;
+        mv TaskDescription.pdf ../TaskDescription.pdf;
+        cd ..;
+      fi
+    # Thesis
+    - cd Thesis
+    - sed -i 's/\\documentclass\[\(.*\)\]/\\documentclass\[\1,final\]/' "thesis.tex"
+    - latexmk -e '$pdflatex=q/pdflatex %O -shell-escape %S/' -pdf thesis.tex
+    - mv thesis.pdf ../Thesis.pdf
+

@@ -1,0 +1,112 @@
+% ===============================================
+% LaTeX Task Template
+%
+% Author: Matthias Nickel
+% E-Mail: Matthias Nickel@tu-dresden.de
+% Kudos to Julian Haase (Julian.Haase@tu-dresden.de) for creating the original template.
+% Date: 02.10.2025
+% Please contact the author in case of questions.
+% ===============================================
+\RequirePackage[ngerman=ngerman-x-latest]{hyphsubst}	% better german hyphenation rules
+\documentclass[english, 10pt]{tudscrreprt}		% load Koma-Script-Class for the CD of the TUD
+														% Replace 'english' with 'ngerman' for the German version and vise versa.
+\usepackage{scrhack}									% includes koma script patches for other packages
+% ===============================================
+%	Character coding and fonts for the document
+% ===============================================
+\usepackage[utf8]{inputenc}	% UTF-8 Support
+\usepackage[T1]{fontenc}	% T1 Fonts for font encoding
+\usepackage{babel} %
+\usepackage{microtype}	% better layout of the text
+\usepackage[sfdefault]{noto}
+% ===============================================
+%	Watermark - only for the draft
+% ===============================================
+% \usepackage[firstpage]{draftwatermark}
+% \SetWatermarkText{\textbf{draft}}
+% \SetWatermarkScale{1.1}
+% ===============================================
+%	Additional packages
+% ===============================================
+\usepackage{iflang} 						% For correct headings
+\usepackage{isodate}						% for several date formats
+\usepackage{enumitem}\setlist{noitemsep}	% less space between the items
+\usepackage{tudscrsupervisor}				% package for supervising templates for the CD of the TUD
+
+% ===============================================
+%	Wrapper for discipline
+% ===============================================
+\newcommand{\module}[1]{\discipline{#1}}	% Wrapper to use 'module' instead of 'discipline'
+\TUDoptions{extrabottommargin=-5cm}
+%
+\begin{document}
+% ===============================================
+%	Heading for the chair
+% ===============================================
+\IfLanguageName{english}{% english
+	\faculty{Faculty of Computer Science}
+	\institute{Institute of Computer Engineering}
+	\chair{Chair of Adaptive Dynamic Systems}
+}{% Deutsch
+	\faculty{Fakultät Informatik}
+	\institute{Institut für Technische Informatik}
+	\chair{Professur für Adaptive Dynamische Systeme}
+}%
+\headlogo{logo/ADS_Logo.png}				% Comment out this line if the ADS logo should be used.
+% ===============================================
+% ===============================================
+% ===============================================
+%	Change this for the given case
+% ===============================================
+% ===============================================
+% ===============================================
+\title{%
+	FPGA-based Real-Time Learning Architecture with Partial Reconfiguration for Spiking Neural Networks
+}
+\thesis{master} % master, diploma, bachelor, student, project, evidence, internship or seminar -> for details take a look at table 2.1 in tudscr.pdf
+\author{
+	Yike Jing
+	\matriculationnumber{5201619}%
+	% \module{Master-Thesis-NES}%											% Module ID, e.g., INF-PM-ANW, Eul-NES-C-PW; Comment out for theses
+	\course{Master NES}%								% Course of studies, e.g., Master Computer Science, Diploma Information Systems Engineering, Master Nanoelectronic Systems
+}
+\matriculationyear{2023}
+\issuedate{15.05.2026}
+\duedate{23.10.2026}
+\supervisor{Gloria Sepanta \and Dr.-Ing. Lester Kalms }											% If multiple supervisors use '\and' to separate them.
+\referee{(TU Dresden) Prof. Dr.-Ing. Diana Göhringer \and (TU Dresden) Prof. Dr. rer. nat. Josef Weidendorfer \and (KU Leuven) Prof. Dr. Ir. Nele Mentens}		% If multiple reviewers use '\and' to separate them. Put Diana as first reviewer!
+\professor{Prof. Dr.-Ing. Diana Göhringer}
+\chairman{Prof. Dr.-Ing. T. Mikolajick}							% Uncomment if your student is a NES student.	
+%\chairman{Prof. Dr.-Ing. habil. Martin Wollschlaeger}				% Uncomment if your student is an IST student.
+\taskform[pagestyle=empty]{%
+Spiking Neural Networks (SNNs) are brain-inspired models that process information using discrete spike events instead of continuous values.
+This makes them suitable for low-power, real-time implementations on hardware such as FPGAs.
+However, efficient online learning in SNNs is still difficult to achieve in hardware.
+
+The main goal of this thesis is to investigate efficient and flexible real-time learning in SNNs on FPGA platforms.
+It focuses on existing digital SNN designs with online learning, with emphasis on the SDSP (Spike-Driven Synaptic Plasticity) algorithm.
+The SDSP rule offers a hardware-friendly approach to learning through local update mechanisms.
+Additionally, the thesis will explore Partial Reconfiguration (PR) techniques to enable dynamic changes of the training algorithm, while the rest of the system continues running on the FPGA.
+}{% the main points of the thesis
+	\item Conduct a literature review on:
+    \begin{itemize}
+        \item Digital implementations (FPGA or ASIC) of SDSP training algorithm.
+        \item FPGA-based SNN implementations with PR-based real-time training algorithm.
+    \end{itemize}
+	\item Design and optimize an architectural model for the SDSP algorithm.
+	\item Implement the model into RTL Code, simulate and validate it.
+	\item Integrate the training module into a simplified SNN design (taking advantage of an open-source SNN framework).
+	\item Make the training dynamically reconfigurable (Apply PR to the complete training block).
+	\item Test it on FPGA and get (both with and without PR) the following metrics:
+    \begin{itemize}
+        \item Resource utilization, power consumption, latency, maximum frequency, accuracy, and for PR, reconfiguration time.
+		\item (Optional): Convergence speed for learning. 
+    \end{itemize}
+	\item Comparison with other digital SNN architectures:
+    \begin{itemize}
+        \item With real-time SDSP training possibility.
+        \item with PR-based real-time training possibility.
+    \end{itemize}
+	\item (Optional) Extend the simplified SNN to support more neuron models and/or architecture settings.
+}
+\end{document}

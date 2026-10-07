@@ -1,0 +1,17 @@
+\begin{table}[htbp]
+	\centering
+	\caption{Evaluation Evidence, Supported Conclusions, and Remaining Limitations}
+	\label{tab:evaluation-evidence-and-limitations}
+	\small
+	\begin{tabularx}{\linewidth}{@{}p{0.16\linewidth}p{0.25\linewidth}X X@{}}
+		\toprule
+		\textbf{Aspect} & \textbf{Evidence} & \textbf{Supported conclusion} & \textbf{Not established} \\
+		\midrule
+		Weight update & Teacher-on/off control and restoration after bitstream reload & Supervised operation produces a persistent, target-dependent change & Direct values of every modified synapse \\
+		System integration & Interface tests and 180,000 completed training transactions & The PS, DMA, accelerator, and learning path operate continuously as an integrated system & Behaviour on other boards or with other network and interface configurations \\
+		Implementation & Timing closure at 100~MHz and low device utilization & The complete design is deployable on the PYNQ-Z1 with resource headroom & Maximum frequency and network-scaling limits \\
+		Online learning & Strict accuracy increases from 5.9\% to 39.6\% over three epochs & The implemented local updates improve classification for the tested configuration & Convergence, optimized accuracy, or statistical variation across runs \\
+		Performance & Stable end-to-end training and inference times & The deployed application provides repeatable transaction-level operation & Isolated core throughput, measured energy per image, or normalized superiority over TEDOP \\
+		\bottomrule
+	\end{tabularx}
+\end{table}

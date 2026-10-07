@@ -1,0 +1,102 @@
+% Quantitative comparison for Section 6.6.
+\begin{table}[p]
+	\centering
+	\caption{Comparison with SDSP-Based Related Work}
+	\label{tab:sdsp-evaluation-comparison}
+	\begingroup
+	\scriptsize
+	\sloppy
+	\setlength{\tabcolsep}{1.8pt}
+	\renewcommand{\arraystretch}{1.03}
+	\begin{tabularx}{\textwidth}{@{}
+		>{\raggedright\arraybackslash}p{1.45cm}
+		*{5}{>{\raggedright\arraybackslash}X}@{}}
+		\toprule
+		\textbf{Metric} &
+		\shortstack[l]{\textbf{ODIN}\\\cite{Frenkel2019ODIN}} &
+		\shortstack[l]{\textbf{MorphIC}\\\cite{Frenkel2019MorphIC}} &
+		\shortstack[l]{\textbf{Asgari et al.}\\\cite{Asgari2020SDSP}} &
+		\shortstack[l]{\textbf{TEDOP}\\\cite{Shi2022TEDOP}} &
+		\textbf{This work} \\
+		\midrule
+
+		\textbf{Platform} &
+		28-nm ASIC &
+		65-nm ASIC &
+		Spartan-6 XC6SLX45 FPGA &
+		Zynq-7010 FPGA &
+		PYNQ-Z1, XC7Z020 FPGA \\
+
+		\textbf{Evaluated boundary} &
+		Complete neuromorphic chip &
+		Complete four-core chip &
+		Two-neuron, one-synapse test network &
+		Specialized learning core &
+		Complete PL design; PS included in power estimate \\
+
+		\textbf{Topology} &
+		256--10 MNIST classifier &
+		Four-core hierarchy; eight-class online benchmark &
+		1--1 test network &
+		784--10 MNIST classifier &
+		784--10 MNIST classifier \\
+
+		\textbf{Neuron and decision} &
+		Configurable LIF or phenomenological neuron; rate or first-spike decision &
+		LIF neurons; task-dependent output aggregation &
+		LIF neurons with a calcium estimator &
+		16-bit Temporal-Integrate; final-potential argmax &
+		Modified subtractive-reset LIF; output-spike-count argmax \\
+
+		\textbf{Learning and weights} &
+		Teacher-supervised SDSP; 3-bit weight plus mapping bit &
+		Stochastic SDSP; binary weights &
+		Multiplier-less SDSP; 32-bit fixed point &
+		Stochastic S4DSP; 8-bit weights &
+		Calcium- and membrane-dependent SDSP; 3-bit weights \\
+
+		\textbf{Input and training protocol} &
+		28$\times$28 to 16$\times$16, deskewed and soft-thresholded; 6k samples presented once &
+		Online eight-pattern task; reported MNIST result uses offline training &
+		Synthetic spike trains; no classifier training &
+		784-pixel rate code; 200 steps; epoch count N/R &
+		784-pixel rate code; 100 steps; three 60k-sample epochs \\
+
+		\textbf{Clock} &
+		75~MHz &
+		55~MHz &
+		131~MHz &
+		250~MHz &
+		100~MHz \\
+
+		\textbf{Reported implementation} &
+		0.086\,$\mathrm{mm}^{2}$; 256 neurons; 64k synapses &
+		2.86\,$\mathrm{mm}^{2}$; ${\sim}$2k neurons; ${>}$2M synapses &
+		450 LUTs; 249 registers &
+		952 LUTs; 741 FFs; 4 BRAMs; 0 DSPs &
+		5,056 LUTs; 5,294 FFs; 4 BRAMs \\
+
+		\textbf{Power or energy} &
+		12.7~pJ/SOP; 15~nJ/inference at 0.55~V &
+		51~pJ/SOP; 21.8~$\mu$J/classification &
+		N/R &
+		39~mW; 3.46~$\mu$J/training image; 3.32~$\mu$J/inference image &
+		1.445~W whole-device estimate; isolated energy N/R \\
+
+		\textbf{Online-learning result} &
+		85.0\% rate; 84.5\% rank order on full 10k MNIST test set &
+		800/800 pattern samples; 97.8\% MNIST is offline &
+		LTP and LTD verified; no classification result &
+		90.4\% MNIST test accuracy &
+		39.6\% strict accuracy on fixed 1k validation set after epoch three \\
+
+		\textbf{Reported rate} &
+		N/R &
+		N/R &
+		N/A &
+		11,268 training; 11,749 inference frames/s &
+		66.16 training; ${\sim}$67.8 inference images/s end-to-end \\
+		\bottomrule
+	\end{tabularx}
+	\endgroup
+\end{table}

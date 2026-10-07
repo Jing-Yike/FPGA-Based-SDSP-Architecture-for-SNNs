@@ -1,0 +1,111 @@
+% ===============================================
+% ===============================================
+% LaTeX Thesis Template
+%
+% Author: Julian Haase
+% E-Mail: Julian.Haase@tu-dresden.de
+% Date: 14.05.2018
+% Please contact the author in case of questions.
+% ===============================================
+% ===============================================
+%
+%
+% ===============================================
+%	Include Header File --- all LaTeX definitions stand here
+% ===============================================
+\input{header}
+% ===============================================
+%	Symbols and acronyms for the glossaries package
+% ===============================================
+%\input{symbols}
+\input{acronyms}
+
+\begin{document}
+% ===============================================
+%	Title Page
+% ===============================================
+\pagenumbering{Alph} % Alphanumeric (capital) numbering for the PDF starting with A
+\include{titlepage}	
+% ===============================================
+%	Task
+% ===============================================
+\IfFileExists{../TaskDescription.pdf}{
+  \includepdf[pages=-]{../TaskDescription.pdf}  % Use the created Artifact in CI/CD environment; This will either be the compiled version in the TaskDescription directory or the printed version of the TaskDescriptionSigned.pdf
+}{
+  \IfFileExists{TaskDescriptionSigned.pdf}
+  {\includepdf[pages=-]{TaskDescriptionSigned.pdf}}   % Use the signed (non-printed) version of the task description second, else the compiled or the fallback.
+  {\includepdf[pages=-]{TaskDescription.pdf}}         % Use local file in normal LaTeX environment if artifact is not available
+}
+\bookmark[page=2]{Aufgabenstellung}
+% ===============================================
+%	Confirmation
+% ===============================================
+% Comment this line if Statementofauthorship.pdf exist
+\confirmationclosing{%
+  \medskip\noindent Dresden,\nobreakspace\today\\[8ex]%
+  \begin{minipage}{5cm}%
+    Yike Jing\\[0.5ex]%
+    \includegraphics[width=4.4cm]{figures/signature.jpg}%
+  \end{minipage}%
+}
+\confirmation[supporter=Gloria Sepanta \and Dr.-Ing. Lester Kalms,pagestyle=empty.tudheadings]
+
+\IfFileExists{./Statementofauthorship.pdf}
+  {\includepdf[pages=-]{./Statementofauthorship.pdf}} 
+\bookmark[page=3]{Selbstständigkeitserklärung}
+% ===============================================
+%	Abstract
+% ===============================================	
+\include{abstract}
+\bookmark[page=4]{Kurzfassung/Abstract}
+
+\pagenumbering{Roman} % Roman numbering for the PDF starting with I
+% ===============================================
+%	Table of contents
+% ===============================================
+\tableofcontents
+\clearpage
+% ===============================================
+%	Table of figures
+% ===============================================
+\listoffigures
+\clearpage
+% ===============================================
+%	Table of tables
+% ===============================================
+\listoftables
+\clearpage
+% ===============================================
+%	Table of listings
+% ===============================================
+%
+% ===============================================
+%	Table of acronyms
+% ===============================================
+\printnoidxglossary[style=acrotabularx,title={Acronyms}]
+  \clearpage
+
+\pagenumbering{arabic} % arabic numbering for the PDF starting with 1
+% ===============================================
+%	Start of mainmatter - chapter 1 and so on...
+% ===============================================
+%\include{chapters/examples}%
+\include{chapters/1_Introduction}
+\include{chapters/2_Background}
+\include{chapters/3_Related_Work}
+\include{chapters/4_Design_Methodology}
+\include{chapters/5_Implementation}
+\include{chapters/6_Results_and_Evaluation}
+\include{chapters/7_Conclusion_and_Future_work}
+
+\appendix
+% ===============================================
+%	The bibliography
+% ===============================================
+\printbibliography[heading=bibintoc]%
+% ===============================================
+%	The real appendix :D
+% ===============================================
+%\include{appendix/appendix}
+		
+\end{document}
